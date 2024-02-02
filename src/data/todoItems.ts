@@ -1,4 +1,10 @@
-export let items = [
+export type ItemType = {
+  id: number;
+  completed: boolean;
+  task: string;
+}
+
+export let todoItems: ItemType[] = [
   {
     id: 1,
     completed: true,
