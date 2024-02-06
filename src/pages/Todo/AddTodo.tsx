@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { setTodoList } from '../../services/todoService'
 
 type Props = {
   onAddTodo: Function

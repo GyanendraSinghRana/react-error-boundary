@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import List from "./List";
 import AddTodo from "./AddTodo";
 import ErrorBoundary from "../../components/ErrorBoundary";
-import { getTodoList, setTodoList } from "../../services/todoService";
+import { addTodo, deleteTodo, getTodoList, updateTodo } from "../../services/todoService";
 import { TodoItemType } from "../../types/todoTypes";
 
 function Todo() {
@@ -15,14 +15,19 @@ function Todo() {
   }, []);
 
 	const handleOnAdd = (newTodo: TodoItemType) => {
-		setTodos([...todos, newTodo]);
-		setTodoList([...todos, newTodo]);
+		const updatedList = addTodo(newTodo);
+		setTodos(updatedList);
 	}
 
 	const handleOnUpdate = (id: string) => {
-    const UpdatedTodoList = todos.map(item => item.id === id ? {...item, completed: !item.completed} : item);
-		setTodos(UpdatedTodoList);
-		setTodoList(UpdatedTodoList);
+    const updatedTodo = todos.find(item => item.id === id) as TodoItemType;
+		const updatedList = updateTodo({...updatedTodo, completed: !updatedTodo.completed});
+		setTodos(updatedList);
+	}
+
+	const handleOnDelete = (id: string) => {
+		const updatedList = deleteTodo(id);
+		setTodos(updatedList);
 	}
 
   return (
@@ -30,11 +35,11 @@ function Todo() {
 			<AddTodo onAddTodo={handleOnAdd} />
 			<ul className="ml-2">
 				<ErrorBoundary>
-					<List items={completedItems} onUpdate={handleOnUpdate} />
+					<List items={completedItems} onUpdate={handleOnUpdate} onDelete={handleOnDelete} />
 				</ErrorBoundary>
 				<br />
 				<ErrorBoundary>
-					<List items={incompletedItems} onUpdate={handleOnUpdate} />
+					<List items={incompletedItems} onUpdate={handleOnUpdate} onDelete={handleOnDelete} />
 				</ErrorBoundary>
 			</ul>
 		</div>
