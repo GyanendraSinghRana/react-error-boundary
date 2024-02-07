@@ -1,52 +1,48 @@
-export type ItemType = {
-  id: number;
-  completed: boolean;
-  task: string;
-}
+import { TodoItemType } from "../types/todoTypes";
 
-export let todoItems: ItemType[] = [
+export let todoItems: TodoItemType[] = [
   {
-    id: 1,
+    id: "1",
     completed: true,
     task: "Select a database",
   },
   {
-    id: 2,
+    id: "2",
     completed: false,
     task: "Update React to latest",
   },
   {
-    id: 3,
+    id: "3",
     completed: false,
     task: "Containerize backend API",
   },
   {
-    id: 4,
+    id: "4",
     completed: false,
     task: "Add docker builds to CI/CD pipeline",
   },
   {
-    id: 5,
+    id: "5",
     completed: true,
     task: "Fix CORS configuration on API gateway",
   },
   {
-    id: 6,
+    id: "6",
     completed: false,
     task: "Move dev stack setup to Terraform",
   },
   {
-    id: 7,
+    id: "7",
     completed: false,
     task: "Select an iPaaS vendor",
   },
   {
-    id: 8,
+    id: "8",
     completed: true,
     task: "Document API authentication",
   },
   {
-    id: 9,
+    id: "9",
     completed: false,
     task: "Build Slack integration",
   },
